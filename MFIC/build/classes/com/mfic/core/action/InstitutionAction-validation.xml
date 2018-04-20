@@ -1,0 +1,135 @@
+<!DOCTYPE validators PUBLIC 
+"-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+    <validator type="requiredstring">
+        <param name="fieldName">institutionname</param>
+        <param name="trim">true</param>
+        <message key="institutionname.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">institutionname</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="institutionname.strLength"></message>
+    </validator>
+     <validator type="regex">
+        <param name="fieldName">institutionname</param>
+        <param name="expression"><![CDATA[(^[a-zA-Z ]+$)]]></param>
+        <param name="trim">true</param>
+        <message key="institutionname.invalid"></message>
+    </validator>
+       
+    <validator type="requiredstring">
+        <param name="fieldName">add1</param>
+        <param name="trim">true</param>
+        <message key="address.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">add1</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="address.strLength"></message>
+    </validator>
+
+    <validator type="stringlength">
+        <param name="fieldName">add2</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="address.strLength"></message>
+    </validator>
+
+    <validator type="requiredstring">
+        <param name="fieldName">city</param>
+        <param name="trim">true</param>
+        <message key="city.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">city</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="city.strLength"></message>
+    </validator>
+     <validator type="regex">
+        <param name="fieldName">city</param>
+        <param name="expression"><![CDATA[(^[a-zA-Z ]+$)]]></param>
+        <param name="trim">true</param>
+        <message key="city.invalid"></message>
+    </validator>
+
+<!-- 
+    <validator type="requiredstring">
+        <param name="fieldName">state</param>
+        <param name="trim">true</param>
+        <message key="state.required"></message>
+    </validator>
+-->
+    <validator type="stringlength">
+        <param name="fieldName">state</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="state.strLength"></message>
+    </validator>
+     <validator type="regex">
+        <param name="fieldName">state</param>
+        <param name="expression"><![CDATA[(^[a-zA-Z ]+$)]]></param>
+        <param name="trim">true</param>
+        <message key="institutionState.invalid"></message>
+    </validator>
+	
+    <validator type="requiredstring">
+        <param name="fieldName">contactName</param>
+        <param name="trim">true</param>
+        <message key="contactName.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">contactName</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="contactName.strLength"></message>
+    </validator>
+     <validator type="regex">
+        <param name="fieldName">contactName</param>
+        <param name="expression"><![CDATA[(^[a-zA-Z ]+$)]]></param>
+        <param name="trim">true</param>
+        <message key="contactName.invalid"></message>
+    </validator>  
+   
+    
+    <validator type="requiredstring">
+        <param name="fieldName">contactEmail</param>
+        <param name="trim">true</param>
+        <message key="email.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">contactEmail</param>
+        <param name="maxLength">50</param>
+        <param name="trim">true</param>
+        <message key="email.strLength"></message>
+    </validator>
+    <field name="contactEmail">
+		<field-validator type="email">
+        <message key="email.invalid"></message>
+		</field-validator>
+    </field>
+    
+     <validator type="requiredstring">
+        <param name="fieldName">contactPhone</param>
+        <param name="trim">true</param>
+        <message key="contactPhone.required"></message>
+    </validator>
+    <validator type="regex">
+        <param name="fieldName">contactPhone</param>
+        <param name="expression"><![CDATA[([0-9\s\+-]+)]]></param>
+        <param name="trim">true</param>
+        <message key="contactPhone.invalid"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">contactPhone</param>
+        <param name="maxLength">10</param>
+        <param name="trim">true</param>
+        <message key="contactPhone.strLength"></message>
+    </validator>
+</validators>

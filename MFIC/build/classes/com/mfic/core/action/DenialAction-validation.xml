@@ -1,0 +1,20 @@
+<!DOCTYPE validators PUBLIC 
+"-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+    <validator type="requiredstring">
+        <param name="fieldName">denialNote</param>
+        <param name="trim">true</param>
+        <message key="denialNote.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">denialNote</param>
+        <param name="maxLength">250</param>
+        <param name="trim">true</param>
+        <message key="denialNote.strLength"></message>
+    </validator>
+
+
+</validators>
