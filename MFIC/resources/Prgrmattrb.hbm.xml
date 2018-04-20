@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.ProgramAttribute" table="prgrmattrb" catalog="mfic">
+        <composite-id name="id" class="com.mfic.data.ProgramAttributeId">
+            <key-property name="lnprgid" type="long">
+                <column name="lnprgid" />
+            </key-property>
+            <key-property name="attrbid" type="int">
+                <column name="attrbid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="lnprdt" class="com.mfic.data.LoanProduct" update="false" insert="false" fetch="select">
+            <column name="lnprgid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="attrb" class="com.mfic.data.Attribute" update="false" insert="false" fetch="select">
+            <column name="attrbid" not-null="true" />
+        </many-to-one>
+        <property name="scope" type="char">
+            <column name="scope" length="1" not-null="true" />
+        </property>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+    </class>
+</hibernate-mapping>

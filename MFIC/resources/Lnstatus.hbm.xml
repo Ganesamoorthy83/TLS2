@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.LoanStatus" table="lnstatus" catalog="mfic">
+        <id name="lstid" type="java.lang.Long">
+            <column name="lstid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="lnapp" class="com.mfic.data.LoanApplication" fetch="select">
+            <column name="lid" not-null="true" />
+        </many-to-one>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" not-null="true" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+        <property name="step" type="java.lang.Integer">
+            <column name="step" />
+        </property>
+        <property name="assigneduid" type="java.lang.Long">
+            <column name="assigneduid" />
+        </property>
+        <property name="dtassigned" type="date">
+            <column name="dtassigned" length="10" />
+        </property>
+        <property name="dtcompleted" type="date">
+            <column name="dtcompleted" length="10" />
+        </property>
+        <property name="recordCode" type="java.lang.Character">
+            <column name="recordCode" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

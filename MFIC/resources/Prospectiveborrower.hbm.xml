@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.mfic.data">
+  <class name="ProspectiveBorrower" table="prospectiveborrower">
+  	<id name="id" type="long" column="id">
+	<generator class="increment" />
+	</id>
+
+ 	<property name="fname"  type="string"> 
+		<column name="fname"  length="20" not-null="true" />
+	</property>
+	
+	<property name="lname" type="string">
+		<column name="lname" length="20" not-null="true" />
+	</property>
+	
+	<property name="mname" type="string">
+		<column name="mname" length="20" />
+	</property>
+
+	<property name="add1" type="string">
+		<column name="add1" length="45"/>
+	</property>
+	
+	<property name="add2" type="string">
+		<column name="add2" length="45" />
+	</property>
+	
+	<property name="city" type="string">
+		<column name="city"  length="45"/>
+	</property>
+	
+	<property name="state" type="string">
+		<column name="state" length="45" />
+	</property>
+ 	
+	<property name="zip" type="string">
+		<column name="zip" length="10" />
+	</property>
+
+	<property name="loancountry" type="string">
+		<column name="loancountry"  length="45" not-null="true"/>
+	</property>
+	
+	<property name="email" type="string">
+		<column name="email"  length="50"/>
+	</property>
+	
+	<property name="hphone" type="string">
+		<column name="hphone"  length="15" />
+	</property>
+	
+	<property name="mphone" type="string">
+		<column name="mphone"  length="15" />
+	</property>
+	
+	<property name="ophone" type="string">
+		<column name="ophone"  length="15" />
+	</property>
+
+   	
+    <property name="lstupdtuid" type="java.lang.Long">
+    	<column name="lstupdtuid" />
+    </property>
+
+	<property name="loancontact" type="string">
+		<column name="loancontact" length="100" />
+	</property>
+	
+	<property name="reference" type="string">
+		<column name="reference" length="45"/>
+	</property>
+       
+    <property name="isConverted" type="java.lang.Character">
+        <column name="isConverted" length="1" />
+    </property>
+	<property name="country" type="string">
+		<column name="country"  length="45"/>
+	</property>
+  	
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+<type-mapping>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+</type-mapping>
+
+
+<table-filter match-catalog="mfic" match-name="attrb"/>
+	<table-filter match-catalog="mfic" match-name="brwr"/>
+	<table-filter match-catalog="mfic" match-name="institution" />
+	<table-filter match-catalog="mfic" match-name="lnapp" />
+	<table-filter match-catalog="mfic" match-name="lnattrb" />
+	<table-filter match-catalog="mfic" match-name="lnbrwr" />
+	<table-filter match-catalog="mfic" match-name="lndocs" />
+	<table-filter match-catalog="mfic" match-name="lnprdt" />
+	<table-filter match-catalog="mfic" match-name="lnstatus" />
+	<table-filter match-catalog="mfic" match-name="prgrmattrb" />
+	<table-filter match-catalog="mfic" match-name="prospectiveborrower" />
+	<table-filter match-catalog="mfic" match-name="role" />
+	<table-filter match-catalog="mfic" match-name="upwd" />
+	<table-filter match-catalog="mfic" match-name="urole" />
+	<table-filter match-catalog="mfic" match-name="user" />
+	<table catalog="mfic" name="lnprdt"></table>
+	<table catalog="mfic" name="urole"></table>
+	<table catalog="mfic" name="role"></table>
+	<table catalog="mfic" name="attrb"></table>
+	<table catalog="mfic" name="lnapp"></table>
+	<table catalog="mfic" name="lndocs"></table>
+	<table catalog="mfic" name="prgrmattrb"></table>
+	<table catalog="mfic" name="prospectiveborrower"></table>
+	<table catalog="mfic" name="upwd"></table>
+	<table catalog="mfic" name="user"></table>
+	<table catalog="mfic" name="lnbrwr"></table>
+	<table catalog="mfic" name="brwr"></table>
+	<table catalog="mfic" name="lnstatus"></table>
+	<table catalog="mfic" name="institution"></table>
+	<table catalog="mfic" name="lnattrb"></table>
+</hibernate-reverse-engineering>

@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.custom.i18n.resources"
+		value="MessageResources" />
+		
+	<constant name="struts.multipart.maxSize" value="10240000" />
+
+
+	<package name="default" extends="struts-default" namespace="/">
+
+		<action name="home" class="com.mfic.core.action.LocaleAction">
+			<result name="success">/WEB-INF/jsp/Home.jsp</result>
+		</action>
+		
+<!-- Login -->
+		<action name="membersLogin" class="com.mfic.core.action.Login" method="show">
+			<result name="none">/WEB-INF/jsp/Login.jsp</result>
+		</action>
+
+		<action name="login" class="com.mfic.core.action.Login" method="authenticate">
+			<result name="success">/WEB-INF/jsp/afterlogin.jsp</result>
+			<result name="input">/WEB-INF/jsp/Login.jsp</result>
+			<result name="error">/WEB-INF/jsp/Login.jsp</result>
+		</action>
+		<action name="logout" class="com.mfic.core.action.Logout" method="execute">
+			<result name="success" type="redirect">membersLogin</result>
+		</action>
+		<action name="tempPwd" class="com.mfic.core.action.PasswordForgotAction" method="authenticate">
+			<result name="success">/WEB-INF/jsp/PasswordForgotten.jsp</result>
+			<result name="input">/WEB-INF/jsp/PasswordForgotten.jsp</result>
+			<result name="fail">/WEB-INF/jsp/PasswordForgotten.jsp</result>
+		</action>
+		<action name="pwdforgotten" class="com.mfic.core.action.PasswordForgotAction" method="show">
+			<result name="none">/WEB-INF/jsp/PasswordForgotten.jsp</result>
+		</action>
+
+<!-- Prospective Borrower -->
+		<action name="loanapply"
+			class="com.mfic.core.action.ProspectiveBorrowerAction" method="saveOrUpdate">
+			<result name="success">/WEB-INF/jsp/Result.jsp</result>
+			<result name="input">/WEB-INF/jsp/LoanInquiry.jsp</result>
+			<result name="error">/WEB-INF/jsp/LoanInquiry.jsp</result>
+		</action>
+
+		<action name="listProspectiveBorrower" class="com.mfic.core.action.ProspectiveBorrowerAction" method="list">
+			<result name="populate">/WEB-INF/jsp/MFICofficer.jsp</result>
+		</action>
+		<action name="convertBorrower"
+			class="com.mfic.core.action.ConvertBorrowerAction" method="saveOrUpdate">
+			<result name="success" type="redirect">/listProspectiveBorrower</result>
+			<result name="input">/WEB-INF/jsp/ConvertBorrower.jsp</result>
+			<result name="fail">/WEB-INF/jsp/ConvertBorrower.jsp</result>
+		</action>
+		
+		<action name="searchPB" class="com.mfic.core.action.ProspectiveBorrowerAction" method="search">
+			<result name="success">/WEB-INF/jsp/MFICofficer.jsp</result>
+			<result name="input">/WEB-INF/jsp/MFICofficer.jsp</result>
+			<result name="fail">/WEB-INF/jsp/MFICofficer.jsp</result>
+		</action>
+		<action name="covAsBorrower" class="com.mfic.core.action.ConvertBorrowerAction" method="findProspectiveBorrower">
+			<result name="success">/WEB-INF/jsp/ConvertBorrower.jsp?=$(id)</result>
+			<result name="fail">/WEB-INF/jsp/ConvertBorrower.jsp</result>
+		</action>
+		<action name="rejectPBorrower" class="com.mfic.core.action.ProspectiveBorrowerAction" method="RejectProspectiveBorrower">
+			<result name="success" type="redirect">/listProspectiveBorrower</result>
+			<result name="fail">/WEB-INF/jsp/ProspectiveBorrowerDet.jsp?=$(id)</result>
+		</action>
+		<action name="detailPB" class="com.mfic.core.action.UsersAction" method="findProspectiveBorrower">
+			<result name="success">/WEB-INF/jsp/ProspectiveBorrowerDet.jsp?=$(id)</result>
+			<result name="fail" type="redirect">/listProspectiveBorrower</result>
+		</action>
+		<action name="NewBorrowerCreation" class="com.mfic.core.action.ProspectiveBorrowerAction" method="listInstitute">
+			<result name="populate">/WEB-INF/jsp/ConvertBorrower.jsp</result>
+		</action>
+		<action name="listLoanProducts" class="com.mfic.core.action.LoanProductAction" method="listLoanList">
+			<result name="populate">/WEB-INF/jsp/LoanProductList.jsp</result>
+		</action>
+		<action name="listLnProducts" class="com.mfic.core.action.UsersAction" method="listLoanList">
+			<result name="populate">/WEB-INF/jsp/LoanProductList.jsp</result>
+		</action>
+		<action name="listJointLoans" class="com.mfic.core.action.LoanApplicationAction" method="listJointLoanApplications">
+			<result name="populate">/WEB-INF/jsp/JointLoanApplications.jsp</result>
+		</action>
+		<action name="AddtionalLoanAppln" class="com.mfic.core.action.AddtionalLoanApplicationAction" method="listUser">
+			<result name="populate">/WEB-INF/jsp/AddAdditionalLoanApplication.jsp</result>
+		</action>
+		<action name="addLoanApplication"
+			class="com.mfic.core.action.AddtionalLoanApplicationAction" method="saveOrUpdate">
+			<result name="success" type="redirect">/listProspectiveBorrower</result>
+			<result name="fail">/WEB-INF/jsp/AddAdditionalLoanApplication.jsp</result>
+		</action>
+
+<!-- Loan Catalog -->
+		<action name="CountryList" class="com.mfic.core.action.InstitutionAction" method="listCountry">
+			<result name="populate">/WEB-INF/jsp/LoanFeatures.jsp</result>
+		</action>                                
+
+		<action name="InstitutionList" class="com.mfic.core.action.InstitutionAction" method="listInstituteByCountry">
+			<result name="populate">/WEB-INF/jsp/InstitutionList.jsp</result>
+			<param name="cntryName">${country}</param>
+		</action>
+		<action name="lnProductList" class="com.mfic.core.action.LoanProductAction" method="listByInstitution">
+			<result name="populate">/WEB-INF/jsp/loanList.jsp</result>
+			<result name="fail">/WEB-INF/jsp/loanList.jsp</result>
+			<param name="instuteName">${institutionname}</param>
+		</action>
+
+
+<!-- Manage Users and Role -->
+		<action name="addUser" class="com.mfic.core.action.UsersAction" method="saveOrUpdate">
+			<result name="success"  type="redirect">/listUser</result>
+			<result name="input">/WEB-INF/jsp/AddUser.jsp</result>
+			<result name="fail">/WEB-INF/jsp/AddUser.jsp</result>
+		</action>
+		<action name="editUser" class="com.mfic.core.action.UsersAction" method="saveOrUpdate">
+			<result name="success"  type="redirect">/listUser</result>
+			<result name="input">/WEB-INF/jsp/EditUser.jsp</result>
+			<result name="fail">/WEB-INF/jsp/EditUser.jsp</result>
+		</action>
+		<action name="listUser" class="com.mfic.core.action.UsersAction" method="list">
+			<result name="populate">/WEB-INF/jsp/SystemAdmin.jsp</result>
+		</action>
+		<action name="editFindUser" class="com.mfic.core.action.UsersAction" method="edit">
+			<result name="success">/WEB-INF/jsp/EditUser.jsp?=$(uid)</result>
+			<result name="fail">/WEB-INF/jsp/EditUser.jsp</result>
+		</action>
+		<action name="deleteUser" class="com.mfic.core.action.UsersAction" method="delete">
+			<result name="success" type="redirect">listUser</result>
+		</action>
+		<action name="DisableUser" class="com.mfic.core.action.UsersAction" method="disableUser">
+			<result name="success"  type="redirect">/listUser</result>
+			<result name="fail">/listUser</result>
+		</action>
+		<action name="EnableUser" class="com.mfic.core.action.UsersAction" method="enableUser">
+			<result name="success"  type="redirect">/listUser</result>
+			<result name="fail">/listUser</result>
+		</action>
+		<action name="SystemAdmin">
+			<result type="redirect">/listUser</result>
+		</action>
+		<action name="NewUserCreation" class="com.mfic.core.action.UsersAction" method="listRole">
+			<result name="populate">/WEB-INF/jsp/AddUser.jsp</result>
+		</action>
+
+<!-- Manage Loan Products -->
+		<action name="NewLoanProductCreation" class="com.mfic.core.action.LoanProductAction" method="getAttributeAndInstitution">
+			<result name="populate">/WEB-INF/jsp/CreateLoanProduct.jsp</result>
+		</action>
+		<action name="InstitutionListByCountry" class="com.mfic.core.action.LoanProductAction" method="listInstituteByCountry">
+			<result name="populate">/WEB-INF/jsp/LnprdtInstitutionList.jsp</result>
+		</action>
+		<action name="lnprdtList" class="com.mfic.core.action.LoanProductAction" method="list">
+			<result name="populate">/WEB-INF/jsp/LoanProducts.jsp</result>
+		</action>
+		<action name="createLoanProduct"
+			class="com.mfic.core.action.LoanProductAction" method="saveOrUpdate">
+			<result name="success" type="redirect">lnprdtList</result>
+			<result name="input">/WEB-INF/jsp/CreateLoanProduct.jsp</result>
+			<result name="fail">/WEB-INF/jsp/CreateLoanProduct.jsp</result>
+		</action>
+		<action name="editLoanProduct" class="com.mfic.core.action.LoanProductAction" method="edit">
+			<result name="success">/WEB-INF/jsp/ModifyLoanProduct.jsp?=$(lnprdtid)</result>
+			<result name="fail">/WEB-INF/jsp/ModifyLoanProduct.jsp</result>
+		</action>
+		<action name="disableLoanProduct" class="com.mfic.core.action.LoanProductAction" method="disableLoanProduct">
+			<result name="success"  type="redirect">/lnprdtList</result>
+			<result name="fail"  type="redirect">/lnprdtList</result>
+		</action>
+		<action name="enableLoanProduct" class="com.mfic.core.action.LoanProductAction" method="enableLoanProduct">
+			<result name="success"  type="redirect">/lnprdtList</result>
+			<result name="fail"  type="redirect">/lnprdtList</result>
+		</action>
+<!-- Manage Attributes -->
+		<action name="attrList" class="com.mfic.core.action.AttributeAction" method="list">
+			<result name="populate">/WEB-INF/jsp/Attribute.jsp</result>
+		</action>
+		<action name="NewAttrbCreation" class="com.mfic.core.action.AttributeAction" method="list">
+			<result name="populate">/WEB-INF/jsp/AddAttrb.jsp</result>
+		</action>
+		<action name="editFindAttrb" class="com.mfic.core.action.AttributeAction" method="edit">
+			<result name="success">/WEB-INF/jsp/EditAttrb.jsp?=$(attrbid)</result>
+			<result name="fail">/WEB-INF/jsp/EditAttrb.jsp</result>
+		</action>
+		<action name="addAttrb" class="com.mfic.core.action.AttributeAction" method="saveOrUpdate">
+			<result name="success"  type="redirect">/listAttrb</result>
+			<result name="input">/WEB-INF/jsp/AddAttrb.jsp</result>
+			<result name="fail">/WEB-INF/jsp/AddAttrb.jsp</result>
+		</action>
+		<action name="editAttrb" class="com.mfic.core.action.AttributeAction" method="saveOrUpdate">
+			<result name="success" type="redirect">/listAttrb</result>
+			<result name="input">/WEB-INF/jsp/EditAttrb.jsp</result>
+			<result name="fail">/WEB-INF/jsp/EditAttrb.jsp</result>
+		</action>
+		<action name="listAttrb" class="com.mfic.core.action.AttributeAction" method="listAll">
+			<result name="populate">/WEB-INF/jsp/Attribute.jsp</result>
+		</action>
+		<action name="listAttrbPhyTYpe" class="com.mfic.core.action.AttributeAction" method="listPhysicalType">
+			<result name="populate">/WEB-INF/jsp/AttrbPhyTypeList.jsp</result>
+		</action>
+
+
+<!-- Manage Institution -->
+		<action name="addInst" class="com.mfic.core.action.InstitutionAction" method="saveOrUpdate">
+			<result name="success"  type="redirect">/listInst</result>
+			<result name="input">/WEB-INF/jsp/AddInst.jsp</result>
+			<result name="fail">/WEB-INF/jsp/AddInst.jsp</result>
+		</action>
+		<action name="editInst" class="com.mfic.core.action.InstitutionAction" method="saveOrUpdate">
+			<result name="success" type="redirect">/listInst</result>
+			<result name="input">/WEB-INF/jsp/EditInst.jsp</result>
+			<result name="fail">/WEB-INF/jsp/EditInst.jsp</result>
+		</action>
+		<action name="NewInstCreation" class="com.mfic.core.action.InstitutionAction" method="list">
+			<result name="populate">/WEB-INF/jsp/AddInst.jsp</result>
+		</action>
+		<action name="editFindInst" class="com.mfic.core.action.InstitutionAction" method="edit">
+			<result name="success">/WEB-INF/jsp/EditInst.jsp?=$(institutionid)</result>
+			<result name="fail">/WEB-INF/jsp/EditInst.jsp</result>
+		</action>
+		<action name="listInst" class="com.mfic.core.action.InstitutionAction" method="listAll">
+			<result name="populate">/WEB-INF/jsp/Institution.jsp</result>
+		</action>
+<!-- Track Loan Status -->
+		<action name="tracklnstatus" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApplicationByUser">
+			<result name="populate">/WEB-INF/jsp/Borrower.jsp</result>
+		</action>
+		<action name="LoanApplication" class="com.mfic.core.action.LoanAttributeAction" method="findByLoanId">
+			<result name="populate">/WEB-INF/jsp/LoanInformation.jsp?=$(lid)</result>
+<!--			<result name="populate">/WEB-INF/jsp/LoanApplication.jsp?=$(lid)</result>-->
+			<result name="fail">/WEB-INF/jsp/Borrower.jsp</result>
+		</action>
+		<action name="addOrEditData"
+			class="com.mfic.core.action.LoanAttributeAction" method="getAttribute">
+			<result name="success">/WEB-INF/jsp/LoanApplnData.jsp?=$(attrbid)?=&amp;$(description)?=&amp;$(value)</result>
+			<result name="fail">/WEB-INF/jsp/LoanApplnData.jsp</result>
+		</action>
+
+		<action name="documentUpload"
+			class="com.mfic.core.action.LoanAttributeAction" method="getAttribute">
+			<result name="success">/WEB-INF/jsp/LoanApplnFileUpload.jsp?=$(attrbid)?=&amp;$(description)</result>
+			<result name="fail">/WEB-INF/jsp/LoanApplnFileUpload.jsp</result>
+		</action>
+
+		<action name="uploadFile"
+			class="com.mfic.core.action.LoanAttributeAction" method="getFileLabelName">
+			<result name="success">/WEB-INF/jsp/FileUpload.jsp?=$(labelName)</result>
+			<result name="fail">/WEB-INF/jsp/FileUpload.jsp</result>
+		</action>
+		<action name="saveFileupload"
+			class="com.mfic.core.action.LoanAttributeAction" method="saveUploadFile">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10240000</param>
+				<param name="allowedTypes">image/jpeg,image/png,image/tiff,application/pdf,application/msword</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/SuccessLoanAttrb.jsp</result>
+			<result name="input">/WEB-INF/jsp/FileUpload.jsp</result>
+			<result name="fail">/WEB-INF/jsp/FileUpload.jsp</result>
+		</action>
+
+		<action name="uploadFileLoanAnalysis"
+			class="com.mfic.core.action.BorrowerAction" method="getFileLabelName">
+			<result name="success">/WEB-INF/jsp/LoanAnalysisFileUpload.jsp?=$(labelName)</result>
+			<result name="fail">/WEB-INF/jsp/LoanAnalysisFileUpload.jsp</result>
+		</action>
+		<action name="changeStatusApplicationComplete"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToApplicationComplete">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10240000</param>
+				<param name="allowedTypes">image/jpeg,image/png,image/tiff,application/pdf,application/msword</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/SuccessLoanAttrb.jsp</result>
+			<result name="input">/WEB-INF/jsp/LoanAnalysisFileUpload.jsp</result>
+			<result name="fail">/WEB-INF/jsp/LoanAnalysisFileUpload.jsp</result>
+		</action>
+
+		<action name="uploadFileInvoice"
+			class="com.mfic.core.action.LoanAttributeAction" method="getFileLabelName">
+			<result name="success">/WEB-INF/jsp/FileUpload.jsp?=$(labelName)?=&amp;$(lid)</result>
+			<result name="fail">/WEB-INF/jsp/FileUpload.jsp</result>
+		</action>
+
+		<action name="documentDownload"
+			class="com.mfic.core.action.LoanAttributeAction" method="docDownload">
+			<result name="success" type="stream">
+			  <param name="contentType">${contentType}</param>
+			  <param name="inputName">fileInputStream</param>
+			  <param name="contentDisposition">attachment;filename="${docName}"</param>
+			  <param name="bufferSize">10240000</param>
+			</result>
+		</action>
+
+		<action name="saveLoanAttribute"
+			class="com.mfic.core.action.LoanAttributeAction" method="saveOrUpdate">
+			<result name="success">/WEB-INF/jsp/SuccessLoanAttrb.jsp</result>
+			<result name="input">/WEB-INF/jsp/LoanApplnData.jsp</result>
+			<result name="fail">/WEB-INF/jsp/LoanApplnData.jsp</result>
+		</action>
+		<action name="saveLoanAttributeFilupload"
+			class="com.mfic.core.action.LoanAttributeAction" method="saveOrUpdate">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10240000</param>
+				<param name="allowedTypes">image/jpeg,image/png,image/tiff,application/pdf,application/msword</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/SuccessLoanAttrb.jsp</result>
+			<result name="input">/WEB-INF/jsp/LoanApplnFileUpload.jsp</result>
+			<result name="fail">/WEB-INF/jsp/LoanApplnFileUpload.jsp</result>
+		</action>
+		<action name="changeStatusApplicationVerification"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToApplicationVerification">
+			<result name="success">/WEB-INF/jsp/SuccessStatusChange.jsp</result>
+			<result name="fail">/WEB-INF/jsp/Borrower.jsp</result>
+		</action>
+		<action name="changeStatusApplicationVerificationMFIC"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToApplicationVerification">
+			<result name="success" type="redirect">listLoanVerification</result>
+			<result name="fail">/WEB-INF/jsp/MFICofficer.jsp</result>
+		</action>
+		<action name="changeStatusApplicationVerificationTP"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToApplicationVerification">
+			<result name="success" type="redirect">listLoanApplicationsTP</result>
+			<result name="fail" type="redirect">listLoanComplete</result>
+		</action>
+		
+<!-- Loan Applications -->
+		<action name="listLoanApplications" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApplicationsByCreatedOrInfoGatherStatus">
+			<result name="populate">/WEB-INF/jsp/LoanApplications.jsp</result>
+		</action>
+		<action name="listLoanApplicationsTP" class="com.mfic.core.action.LoanApplicationAction" method="listLnappsByInstIdAndCreatedOrInfoGatherStatus">
+			<result name="populate">/WEB-INF/jsp/LoanApplications.jsp</result>
+		</action>
+
+<!-- Loan Verification -->
+		<action name="listLoanVerification" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApplicationsVerify">
+			<result name="populate">/WEB-INF/jsp/LoanApplicationVerification.jsp</result>
+		</action>
+		<action name="searchLnapp" class="com.mfic.core.action.LoanApplicationAction" method="search">
+			<result name="success">/WEB-INF/jsp/LoanApplicationVerification.jsp</result>
+			<result name="input">/WEB-INF/jsp/LoanApplicationVerification.jsp</result>
+			<result name="fail">/WEB-INF/jsp/LoanApplicationVerification.jsp</result>
+		</action>
+		<action name="changeStatusInfoGather"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToInfoGathering">
+			<result name="success" type="redirect">listLoanVerification</result>
+			<result name="fail">/WEB-INF/jsp/LoanApplnVerifyDetail.jsp</result>
+		</action>
+
+<!-- Waiting Payment -->	
+		<action name="listPayComplete" class="com.mfic.core.action.LoanApplicationAction" method="listPaymentComplete">
+			<result name="populate">/WEB-INF/jsp/WaitingPayments.jsp</result>
+		</action>
+		<action name="paymentConfirm"
+			class="com.mfic.core.action.BorrowerAction" method="setPaymentComplete">
+			<result name="success" type="redirect">listPayComplete</result>
+			<result name="fail" type="redirect">listLoanVerification</result>
+		</action>
+		<action name="paymentConfirmTP"
+			class="com.mfic.core.action.BorrowerAction" method="setPaymentComplete">
+			<result name="success" type="redirect">listLoanApplications</result>
+			<result name="fail" type="redirect">loanDetailTP</result>
+		</action>
+
+<!-- 
+		<action name="changeStatusApplicationComplete"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToApplicationComplete">
+			<result name="success" type="redirect">listPayComplete</result>
+			<result name="fail">/WEB-INF/jsp/WaitingPayments.jsp</result>
+		</action>
+ -->
+ 
+<!-- Loan Complete -->		
+		<action name="listLoanComplete" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApplicationsComplete">
+			<result name="populate">/WEB-INF/jsp/LoanApplicationComplete.jsp</result>
+		</action>
+<!-- Loan Decision -->	
+		<action name="loanApproval" class="com.mfic.core.action.ApprovalAction" method="show">
+			<result name="none">/WEB-INF/jsp/ApprovalNote.jsp</result>
+		</action>
+		<action name="loanDenial" class="com.mfic.core.action.DenialAction" method="show">
+			<result name="none">/WEB-INF/jsp/DenialNote.jsp</result>
+		</action>
+		<action name="changeStatusLoanApproved"
+			class="com.mfic.core.action.ApprovalAction" method="changeStatusToLoanApproved">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10240000</param>
+				<param name="allowedTypes">image/jpeg,image/png,image/tiff,application/pdf,application/msword</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">listLoanApprovedOrDeniedTP</result>
+			<result name="input">/WEB-INF/jsp/ApprovalNote.jsp</result>
+			<result name="fail">/WEB-INF/jsp/ApprovalNote.jsp</result>
+		</action>
+		<action name="changeStatusLoanDenied"
+			class="com.mfic.core.action.DenialAction" method="changeStatusToLoanDenied">
+			<result name="success" type="redirect">listLoanApprovedOrDeniedTP</result>
+			<result name="input">/WEB-INF/jsp/DenialNote.jsp</result>
+			<result name="fail">/WEB-INF/jsp/DenialNote.jsp</result>
+		</action>
+		<action name="changeStatusLoanDiscontinued"
+			class="com.mfic.core.action.BorrowerAction" method="changeStatusToLoanDiscontinued">
+			<result name="success" type="redirect">listLoanApprovedOrDenied</result>
+			<result name="input">/WEB-INF/jsp/LoanDiscontinueForm.jsp</result>
+			<result name="fail">/WEB-INF/jsp/LoanDiscontinueForm.jsp</result>
+		</action>
+		<action name="cancelLoan" class="com.mfic.core.action.BorrowerAction" >
+			<result name="success">/WEB-INF/jsp/LoanDiscontinueForm.jsp</result>
+		</action>
+		<action name="listLoanApprovedOrDenied" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApprovedOrDeniedForMFIC">
+			<result name="populate">/WEB-INF/jsp/ApprovedOrDenied.jsp</result>
+		</action>
+		<action name="listLoanApprovedOrDeniedTP" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApprovedOrDeniedForTP">
+			<result name="populate">/WEB-INF/jsp/ApprovedOrDenied.jsp</result>
+		</action>
+		<action name="listLoanDisbursed" class="com.mfic.core.action.LoanApplicationAction" method="listLoanDisbursed">
+			<result name="populate">/WEB-INF/jsp/DisbursedLoans.jsp</result>
+		</action>
+		<action name="listLoanApproved" class="com.mfic.core.action.LoanApplicationAction" method="listLoanApproved">
+			<result name="populate">/WEB-INF/jsp/ApprovedLoans.jsp</result>
+		</action>
+		<action name="listLoanRejected" class="com.mfic.core.action.LoanApplicationAction" method="listLoanDenied">
+			<result name="populate">/WEB-INF/jsp/RejectedLoans.jsp</result>
+		</action>
+
+<!-- Loan Disbursed -->	
+		<action name="loanDisburse" class="com.mfic.core.action.DisburseAction" method="show">
+			<result name="success">/WEB-INF/jsp/LoanDisbursementForm.jsp</result>
+		</action>
+
+		<action name="changeStatusLoanDisbursed"
+			class="com.mfic.core.action.DisburseAction" method="changeStatusToLoanDisbursed">
+			<interceptor-ref name="fileUpload">
+				<param name="maximumSize">10240000</param>
+				<param name="allowedTypes">image/jpeg,image/png,image/tiff,application/pdf,application/msword</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			<result name="success" type="redirect">listLoanComplete</result>
+			<result name="input">/WEB-INF/jsp/LoanDisbursementForm.jsp</result>
+			<result name="fail">/WEB-INF/jsp/LoanDisbursementForm.jsp</result>
+		</action>
+		
+
+<!-- My Account -->			
+		<action name="myaccount" class="com.mfic.core.action.MyAccount" method="show">
+			<result name="none">/WEB-INF/jsp/ChangePassword.jsp</result>
+		</action>
+		<action name="changemypassword" class="com.mfic.core.action.MyAccount" method="show">
+			<result name="none">/WEB-INF/jsp/ChangePassword.jsp</result>
+		</action>
+		<action name="changemypersonaldet">
+			<result name="success">/WEB-INF/jsp/ChangePersonalDetail.jsp</result>
+		</action>
+		<action name="changePassword" class="com.mfic.core.action.MyAccount" method="changePassword">
+			<result name="success">/WEB-INF/jsp/Login.jsp</result>
+			<result name="input">/WEB-INF/jsp/ChangePassword.jsp</result>
+			<result name="fail">/WEB-INF/jsp/ChangePassword.jsp</result>
+		</action>
+		<action name="changePersonalDet" class="com.mfic.core.action.MyAccount" method="changePersonalDetail">
+			<result name="success">/WEB-INF/jsp/MyAccount.jsp</result>
+			<result name="input">/WEB-INF/jsp/ChangePersonalDetail.jsp</result>
+			<result name="fail">/WEB-INF/jsp/ChangePersonalDetail.jsp</result>
+		</action>
+		<action name="backtoMyHome">
+			<result name="success">/WEB-INF/jsp/afterlogin.jsp</result>
+		</action>
+		
+<!-- URL -->
+		<action name="loanEnquiryForm" class="com.mfic.core.action.ProspectiveBorrowerAction" method="listCountry">
+			<result name="populate">/WEB-INF/jsp/LoanInquiry.jsp</result>
+		</action>
+		<action name="loanDetails" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/LoanDetail.jsp</result>
+		</action>
+		<action name="aboutus" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/AboutUs.jsp</result>
+		</action>
+		<action name="testimonials" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/Testimonials.jsp</result>
+		</action>
+		<action name="branch" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/BranchLocations.jsp</result>
+		</action>
+		<action name="contactus" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/ContactUs.jsp</result>
+		</action>
+		<action name="support" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/Support.jsp</result>
+		</action>
+		<action name="help" class="com.mfic.core.action.ShowAction">
+			<result name="success">/WEB-INF/jsp/Help.jsp</result>
+		</action>
+		<action name="report" class="com.mfic.core.action.ReportAction" method="none">
+			<result name="success">/WEB-INF/jsp/Reports.jsp</result>
+		</action>
+
+		<action name="loanDetailBorrower" class="com.mfic.core.action.LoanAttributeAction" method="findByLoanId">
+			<result name="populate">/WEB-INF/jsp/LoanInfoDetails.jsp?=$(lid)</result>
+			<result name="fail">/WEB-INF/jsp/Borrower.jsp</result>
+		</action>
+
+		<action name="loanDetailMFIC" class="com.mfic.core.action.LoanAttributeAction" method="findByLoanId">
+			<result name="populate">/WEB-INF/jsp/LoanInfoDetails.jsp?=$(lid)</result>
+			<result name="fail">/WEB-INF/jsp/MFICofficer.jsp</result>
+		</action>
+
+		<action name="loanDetailTP" class="com.mfic.core.action.LoanAttributeAction" method="findByLoanId">
+			<result name="populate">/WEB-INF/jsp/LoanInfoDetails.jsp?=$(lid)</result>
+			<result name="fail">/WEB-INF/jsp/SystemAdmin.jsp</result>
+		</action>
+
+		<action name="processCredit" class="com.mfic.core.action.LncreditAction" method="processCredit">
+			<result name="success">/WEB-INF/jsp/Home.jsp</result>
+		</action>
+		
+		<action name="viewCredit" class="com.mfic.core.action.LncreditAction" method="list">
+			<result name="populate">/WEB-INF/jsp/CreditReportTest.jsp</result>
+		</action>
+
+<!-- Reports -->
+		<action name="rptPBorrowers"
+			class="com.mfic.core.action.ReportAction" method="listAllProspectiveBorrowers">
+			<result name="success" type="stream">
+			  <param name="inputName">fileInputStream</param>
+              <param name="contentType">application/csv</param>   
+              <param name="contentDisposition">attachment;filename="ProspectiveBorrowers.csv"</param>   
+              <param name="contentCharSet">charset=shift-jis</param>   
+			</result>
+			<result name="fail" type="redirect">report</result>
+		</action>
+		<action name="rptUsers"
+			class="com.mfic.core.action.ReportAction" method="listAllUsers">
+			<result name="success" type="stream">
+			  <param name="inputName">fileInputStream</param>
+              <param name="contentType">application/csv</param>   
+              <param name="contentDisposition">attachment;filename="Users.csv"</param>   
+              <param name="contentCharSet">charset=shift-jis</param>   
+			</result>
+			<result name="fail" type="redirect">report</result>
+		</action>
+		<action name="rptLoans"
+			class="com.mfic.core.action.ReportAction" method="listAllLoans">
+			<result name="success" type="stream">
+			  <param name="inputName">fileInputStream</param>
+              <param name="contentType">application/csv</param>   
+              <param name="contentDisposition">attachment;filename="Loans.csv"</param>   
+              <param name="contentCharSet">charset=shift-jis</param>   
+			</result>
+			<result name="fail" type="redirect">report</result>
+		</action>
+	</package>
+</struts>

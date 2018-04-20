@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.LoanAttribute" table="lnattrb" catalog="mfic">
+        <id name="lnattrbid" type="java.lang.Long">
+            <column name="lnattrbid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="lnapp" class="com.mfic.data.LoanApplication" update="false" fetch="select">
+            <column name="lid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="attrb" class="com.mfic.data.Attribute" update="false" fetch="select">
+            <column name="attrbid" not-null="true" />
+        </many-to-one>
+        <property name="value" type="string">
+            <column name="value" length="45" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" not-null="true" />
+        </property>
+        <property name="doclink" type="string">
+            <column name="doclink" length="45" />
+        </property>
+        <property name="recordCode" type="java.lang.Character">
+            <column name="recordCode" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

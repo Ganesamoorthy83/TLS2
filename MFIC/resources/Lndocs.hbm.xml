@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.mfic.data.LoanDocs" table="lndocs" catalog="mfic">
+        <composite-id name="id" class="com.mfic.data.LoanDocsId">
+            <key-property name="lid" type="long">
+                <column name="lid" />
+            </key-property>
+            <key-property name="dtlstupdt" type="timestamp">
+                <column name="dtlstupdt" length="19" />
+            </key-property>
+        </composite-id>
+        <property name="doctype" type="string">
+            <column name="doctype" length="10" />
+        </property>
+        <property name="doclink" type="string">
+            <column name="doclink" length="45" />
+        </property>
+        <property name="notes" type="string">
+            <column name="notes" length="45" />
+        </property>
+        <property name="recordCode" type="java.lang.Character">
+            <column name="recordCode" length="1" />
+        </property>
+    </class>
+</hibernate-mapping>

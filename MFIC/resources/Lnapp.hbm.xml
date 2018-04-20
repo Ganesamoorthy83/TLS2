@@ -1,0 +1,115 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.LoanApplication" table="lnapp" catalog="mfic">
+        <id name="laid" type="java.lang.Long">
+            <column name="laid" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="lnprdt" class="com.mfic.data.LoanProduct" fetch="select">
+            <column name="lnprdtid" not-null="true" />
+        </many-to-one>
+        <property name="lid" type="long">
+            <column name="lid" not-null="true" />
+        </property>
+        <property name="brwrnbr" type="int">
+            <column name="brwrnbr" not-null="true" />
+        </property>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" not-null="true" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+        <property name="assigneduid" type="long">
+            <column name="assigneduid" not-null="true" />
+        </property>
+        <property name="step" type="int">
+            <column name="step" not-null="true" />
+        </property>
+        <property name="referenceuid" type="java.lang.Long">
+            <column name="referenceuid" />
+        </property>
+        <property name="recordCode" type="java.lang.Character">
+            <column name="recordCode" length="1" />
+        </property>
+        <property name="paymentConfirm" type="java.lang.Character">
+            <column name="paymentConfirm" length="1" />
+        </property>
+        <property name="creditReport" type="string">
+            <column name="creditReport" length="1000" />
+        </property>
+        <property name="approvalNote" type="string">
+            <column name="approvalNote" length="500" />
+        </property>
+        <property name="denialNote" type="string">
+            <column name="denialNote" length="500" />
+        </property>
+        <property name="approvalDoclink" type="string">
+            <column name="approvalDoclink" length="250" />
+        </property>
+        <property name="denialDoclink" type="string">
+            <column name="denialDoclink" length="250" />
+        </property>
+        <property name="lndisburseDoclink" type="string">
+            <column name="lndisburseDoclink" length="250" />
+        </property>
+        <property name="lndiscontReason" type="string">
+            <column name="lndiscontReason" length="500" />
+        </property>
+         <property name="dtlnDisburse" type="timestamp">
+            <column name="dtlnDisburse" length="19" />
+        </property>
+        <property name="lnamount" type="java.lang.Double">
+            <column name="lnamount" precision="10" scale="2"/>
+        </property>
+        <property name="interestRate" type="java.lang.Double">
+            <column name="interestRate" precision="5" scale="3" />
+        </property>
+        <property name="clientName" type="string">
+            <column name="clientName" length="45" />
+        </property>
+        <property name="monthPaymnt" type="java.lang.Double">
+            <column name="monthPaymnt" precision="10" scale="2"/>
+        </property>
+        <property name="dtmonPaymnt" type="string">
+            <column name="dtmonPaymnt" length="45" />
+        </property>
+        <property name="commAmount" type="java.lang.Double">
+            <column name="commAmount" precision="10" scale="2"/>
+        </property>
+        <property name="institutionname" type="string">
+            <column name="institutionname" length="45" />
+        </property>
+        <property name="payDoclink" type="string">
+            <column name="payDoclink" length="250" />
+        </property>
+        <property name="lnAnalysisDoclink" type="string">
+            <column name="lnAnalysisDoclink" length="250" />
+        </property>
+        <property name="invoiceDoclink" type="string">
+            <column name="invoiceDoclink" length="250" />
+        </property>
+        
+        <set name="lnattrbs" inverse="true" lazy="true" table="lnattrb" fetch="select">
+            <key>
+                <column name="lid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.LoanAttribute" />
+        </set>
+        <set name="lnstatuses" inverse="true" lazy="true" table="lnstatus" fetch="select">
+            <key>
+                <column name="lid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.LoanStatus" />
+        </set>
+        <set name="lnbrwrs" inverse="true" lazy="true" table="lnbrwr" fetch="select">
+            <key>
+                <column name="lid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.LoanBorrower" />
+        </set>
+    </class>
+</hibernate-mapping>

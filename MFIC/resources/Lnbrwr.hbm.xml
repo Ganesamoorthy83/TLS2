@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.LoanBorrower" table="lnbrwr" catalog="mfic">
+        <composite-id name="id" class="com.mfic.data.LoanBorrowerId">
+            <key-property name="lid" type="long">
+                <column name="lid" />
+            </key-property>
+            <key-property name="brwrid" type="long">
+                <column name="brwrid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="lnapp" class="com.mfic.data.LoanApplication" update="false" insert="false" fetch="select">
+            <column name="lid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="brwr" class="com.mfic.data.Borrower" update="false" insert="false" fetch="select">
+            <column name="brwrid" not-null="true" />
+        </many-to-one>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+    </class>
+</hibernate-mapping>

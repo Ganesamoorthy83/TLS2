@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mfic.data">
+    <class name="Institution" table="institution" catalog="mfic">
+        <id name="institutionid" type="int">
+            <column name="institutionid" />
+            <generator class="increment" />
+        </id>
+        <property name="institutionname" type="string">
+            <column name="institutionname" length="45" />
+        </property>
+        <property name="add1" type="string">
+            <column name="add1" length="45" />
+        </property>
+        <property name="add2" type="string">
+            <column name="add2" length="45" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="45" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="45" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="45" />
+        </property>
+        <property name="contactName" type="string">
+            <column name="contactName" length="45" />
+        </property>
+        <property name="contactPhone" type="string">
+            <column name="contactPhone" length="45" />
+        </property>
+        <property name="contactEmail" type="string">
+            <column name="contactEmail" length="45" />
+        </property>
+        <set name="lnprdts" inverse="true" lazy="true" table="lnprdt" fetch="select">
+            <key>
+                <column name="institutionid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.LoanProduct" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="hibernate.connection.driver_class">
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mfic</property>
+        <property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.characterEncoding">utf8</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name = "hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</property>
+		<property name="show_sql">false</property>
+        <property name="hibernate.current_session_context_class">org.hibernate.context.ThreadLocalSessionContext</property> 
+       
+        <!--  Mapping Resource file -->
+		<mapping resource="Attrb.hbm.xml" />
+		<mapping resource="Brwr.hbm.xml" />
+		<mapping resource="Institution.hbm.xml" />
+		<mapping resource="Lndocs.hbm.xml" />
+		<mapping resource="Lnapp.hbm.xml" />
+		<mapping resource="Lnattrb.hbm.xml" />
+		<mapping resource="Lnbrwr.hbm.xml" />
+		<mapping resource="Lnprdt.hbm.xml" />
+		<mapping resource="Lnstatus.hbm.xml" />
+		<mapping resource="Prgrmattrb.hbm.xml" />
+		<mapping resource="Prospectiveborrower.hbm.xml" />
+		<mapping resource="Role.hbm.xml" />
+		<mapping resource="User.hbm.xml" />
+		<mapping resource="Upwd.hbm.xml" />
+		<mapping resource="Urole.hbm.xml" />
+		<mapping resource="Lncredit.hbm.xml" />
+        <!--  Mapping classes -->
+    </session-factory>
+</hibernate-configuration>

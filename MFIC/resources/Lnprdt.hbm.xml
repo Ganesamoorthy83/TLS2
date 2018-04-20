@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.mfic.data">
+    <class name="LoanProduct" table="lnprdt" catalog="mfic">
+        <id name="lnprdtid" type="long">
+            <column name="lnprdtid" />
+            <generator class="increment" />
+        </id>
+        <property name="lnprdtname" type="string">
+            <column name="lnprdtname" length="45" />
+        </property>
+        <many-to-one name="institution" class="com.mfic.data.Institution" fetch="select">
+            <column name="institutionid" not-null="true" />
+        </many-to-one>
+        <property name="country" type="string">
+            <column name="country" length="20" />
+        </property>
+        <property name="dteff" type="date">
+            <column name="dteff" length="10" />
+        </property>
+        <property name="dtexp" type="date">
+            <column name="dtexp" length="10" />
+        </property>
+        <property name="isactive" type="java.lang.Character">
+            <column name="isactive" length="1" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" />
+        </property>
+        <property name="url" type="string">
+            <column name="url" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

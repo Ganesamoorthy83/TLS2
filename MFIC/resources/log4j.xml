@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+  <appender name="stdout" class="org.apache.log4j.ConsoleAppender"> 
+    <layout class="org.apache.log4j.PatternLayout"> 
+      <!-- Pattern to output the caller's file name and line number -->
+      <param name="ConversionPattern" value="%d{MM/dd/yy HH:mm:ss} %p [%t] (%F:%L) %c - %m%n"/> 
+    </layout> 
+  </appender> 
+
+  <appender name="fileout" class="org.apache.log4j.RollingFileAppender"> 
+    <param name="file" value="${jboss.server.log.dir}/mfic.log"/>
+    <param name="MaxFileSize" value="5MB"/>
+    <!-- Keep 5 backup files -->
+    <param name="MaxBackupIndex" value="5"/>
+    <layout class="org.apache.log4j.PatternLayout"> 
+      <param name="ConversionPattern" value="%d{MM/dd/yy HH:mm:ss} %p [%t] (%F:%L) %c - %m%n"/> 
+    </layout> 
+  </appender> 
+  
+  <!-- log levels: all|debug|info|warn|error|fatal|off|null -->
+  
+    <logger name="org.hibernate">
+      <level value="warn"/> 
+    </logger>
+    
+    <logger name="com.mfic.util.netconnect">
+      <level value="DEBUG"/> 
+    </logger>
+
+    <logger name="com.mfic">
+      <level value="warn"/> 
+    </logger>
+
+
+  <root> 
+  	<priority value ="info" /> 
+    <appender-ref ref="fileout" /> 
+  </root>
+
+</log4j:configuration>

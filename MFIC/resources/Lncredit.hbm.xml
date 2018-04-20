@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 24, 2010 7:47:17 PM by Hibernate Tools 3.3.0.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.Lncredit" table="lncredit" catalog="mfic">
+        <id name="idlnCredit" type="java.lang.Integer">
+            <column name="idlnCredit" />
+            <generator class="identity" />
+        </id>
+        <property name="lid" type="long">
+            <column name="lid" />
+        </property>
+        <property name="creport" type="binary">
+            <column name="creport" />
+        </property>
+        <property name="dtlstupdate" type="timestamp">
+            <column name="dtlstupdate" length="0"/>
+        </property>
+        <property name="brwrid" type="long">
+            <column name="brwrid" />
+        </property>
+    </class>
+</hibernate-mapping>

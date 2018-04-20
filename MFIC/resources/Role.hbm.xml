@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.Role" table="role" catalog="mfic">
+        <id name="rid" type="int">
+            <column name="rid" />
+            <generator class="assigned" />
+        </id>
+        <property name="rolename" type="string">
+            <column name="rolename" length="5" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="45" not-null="true" />
+        </property>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+        <set name="uroles" inverse="true" lazy="true" table="urole" fetch="select">
+            <key>
+                <column name="rid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.UserRole" />
+        </set>
+    </class>
+</hibernate-mapping>

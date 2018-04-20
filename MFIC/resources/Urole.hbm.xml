@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.UserRole" table="urole" catalog="mfic">
+        <composite-id name="id" class="com.mfic.data.UserRoleId">
+            <key-property name="uid" type="long">
+                <column name="uid" />
+            </key-property>
+            <key-property name="rid" type="int">
+                <column name="rid" />
+            </key-property>
+            <key-property name="lnprdtid" type="long">
+                <column name="lnprdtid" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="lnprdt" class="com.mfic.data.LoanProduct" update="false" insert="false" fetch="select">
+            <column name="lnprdtid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="user" class="com.mfic.data.User" update="false" insert="false" fetch="select">
+            <column name="uid" not-null="true" />
+        </many-to-one>
+        <many-to-one name="role" class="com.mfic.data.Role" update="false" insert="false" fetch="select">
+            <column name="rid" not-null="true" />
+        </many-to-one>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+    </class>
+</hibernate-mapping>

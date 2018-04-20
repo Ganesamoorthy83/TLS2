@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 17, 2010 11:00:29 AM by Hibernate Tools 3.2.4.GA -->
+<hibernate-mapping>
+    <class name="com.mfic.data.Attribute" table="attrb" catalog="mfic">
+        <id name="attrbid" type="int">
+            <column name="attrbid" />
+            <generator class="identity" />
+        </id>
+        <property name="description" type="string">
+            <column name="description" length="45" />
+        </property>
+        <property name="attrbname" type="string">
+            <column name="attrbname" length="20" />
+        </property>
+        <property name="attrbtype" type="string">
+            <column name="attrbtype" length="5" />
+        </property>
+        <property name="attrbphysicaltype" type="string">
+            <column name="attrbphysicaltype" length="10" />
+        </property>
+        <property name="dtlstupdt" type="timestamp">
+            <column name="dtlstupdt" length="19" />
+        </property>
+        <property name="lstupdtuid" type="java.lang.Long">
+            <column name="lstupdtuid" />
+        </property>
+         <property name="isDoc" type="char">
+            <column name="isdoc" length="1" />
+        </property>
+        <set name="prgrmattrbs" inverse="true" lazy="true" table="prgrmattrb" fetch="select">
+            <key>
+                <column name="attrbid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.ProgramAttribute" />
+        </set>
+        <set name="lnattrbs" inverse="true" lazy="true" table="lnattrb" fetch="select">
+            <key>
+                <column name="attrbid" not-null="true" />
+            </key>
+            <one-to-many class="com.mfic.data.LoanAttribute" />
+        </set>
+    </class>
+</hibernate-mapping>
