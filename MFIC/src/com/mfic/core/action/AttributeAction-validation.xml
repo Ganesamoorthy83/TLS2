@@ -1,0 +1,37 @@
+<!DOCTYPE validators PUBLIC 
+"-//OpenSymphony Group//XWork Validator 1.0.2//EN" 
+"http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+
+<validators>
+
+    <validator type="requiredstring">
+        <param name="fieldName">attrbname</param>
+        <param name="trim">true</param>
+        <message key="attrbname.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">attrbname</param>
+        <param name="maxLength">20</param>
+        <param name="trim">true</param>
+        <message key="attrbname.strLength"></message>
+    </validator>
+     <validator type="regex">
+        <param name="fieldName">attrbname</param>
+        <param name="expression"><![CDATA[(^[a-zA-Z ]+$)]]></param>
+        <param name="trim">true</param>
+        <message key="attrbname.invalid"></message>
+    </validator>
+
+    <validator type="requiredstring">
+        <param name="fieldName">description</param>
+        <param name="trim">true</param>
+        <message key="attrbdesc.required"></message>
+    </validator>
+    <validator type="stringlength">
+        <param name="fieldName">description</param>
+        <param name="maxLength">45</param>
+        <param name="trim">true</param>
+        <message key="attrbdesc.strLength"></message>
+    </validator>
+
+</validators>
